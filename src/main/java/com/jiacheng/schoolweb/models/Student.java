@@ -1,10 +1,16 @@
 package com.jiacheng.schoolweb.models;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "student")
@@ -23,16 +29,12 @@ public class Student {
 	private String email;
 
 	private String password;
+	
+	private boolean enabled;
 
-	public Student(Long student_id, String firstname, String lastname, String phone, String email, String password) {
-		super();
-		this.student_id = student_id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.phone = phone;
-		this.email = email;
-		this.password = password;
-	}
+	@ManyToMany
+	@JoinTable(name = "student_has_role", joinColumns = @JoinColumn(name = "student_student_id", referencedColumnName = "student_id"), inverseJoinColumns = @JoinColumn(name = "role_role_id", referencedColumnName = "role_id"))
+	private Set<Role> roles;
 
 	public Long getStudent_id() {
 		return student_id;
@@ -81,6 +83,20 @@ public class Student {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+	public boolean isEnabled() {
+		return enabled;
 	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+}
