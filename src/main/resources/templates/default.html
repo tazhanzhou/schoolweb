@@ -1,49 +1,237 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
-        <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">My Notes</title>
-        <meta name="description" content=""/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/style.css" />
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="/"><i class="fas fa-book"></i> My Notes</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/"><i class="fas fa-home"></i> <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active dropdown" th:if="${currentUser}">
-                    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${fullName}"></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-         					<div class="dropdown-item">
-         						<form th:action="@{/logout}" method="post">
-                            		<input type="submit" value="Sign Out"/>
-                        		</form>
-         					</div>
-        				</div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
+	<!-- Icomoon Icon Fonts-->
+	<!-- <link rel="stylesheet" href="/css/icomoon.css"> -->
+	<link th:href="@{/static/css/icomoon.css}" rel="stylesheet"/>
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
 
-        <div class="container">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" integrity="sha512-X/RSQYxFb/tvuz6aNRTfKXDnQzmnzoawgEQ4X8nZNftzs8KFFH23p/BA6D2k0QCM4R0sY1DEy9MIY9b3fwi+bg==" crossorigin="anonymous" />
+	<!-- <link rel="stylesheet" href="/css/owl.theme.default.min.css"> -->
+	<link th:href="@{/static/css/css/owl.theme.default.min.css}" rel="stylesheet"/>
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/flexslider.css" integrity="sha512-HWY8i77pPLL23sU4pHj+5iuZEmmmu2YaiTUcWrBXqBRTpn6yUdDvlFGNmG0qyjDg/vpt+YWNMASjg9M0eOU9DA==" crossorigin="anonymous" />
+
+	<!-- Pricing -->
+	<!-- <link rel="stylesheet" href="/css/pricing.css"> -->
+	<link th:href="@{/static/css/pricing.css}" rel="stylesheet"/>
+
+	<!-- Theme style  -->
+	<!-- <link rel="stylesheet" href="/css/style.css"> -->
+	<link th:href="@{/static/css/style.css}" rel="stylesheet"/>
+
+
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+		<div class="top">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-right">
+						<p class="site">Centre International D'échange Culturel JiaCheng Inc.</p>
+						<p class="num">Call: +01 514 224 9573</p>
+						<ul class="fh5co-social">
+							<li><a href="#"><i class="icon-facebook2"></i></a></li>
+							<li><a href="#"><i class="icon-twitter2"></i></a></li>
+							<li><a href="#"><i class="icon-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="index.html"><i class="icon-study"></i>JCH<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="courses.html">Courses</a></li>
+							<li><a href="teacher.html">Teacher</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="pricing.html">Pricing</a></li>
+							<li class="has-dropdown">
+								<a href="blog.html">Blog</a>
+								<ul class="dropdown">
+									<li><a href="#">Web Design</a></li>
+									<li><a href="#">eCommerce</a></li>
+									<li><a href="#">Branding</a></li>
+									<li><a href="#">API</a></li>
+								</ul>
+							</li>
+							<li><a href="contact.html">Contact</a></li>
+							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+							<li class="btn-cta"><a href="#"><span>Create a Course</span></a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+	
+		<!-- /.container -->
+		<div class="container">
             <div layout:fragment="content"></div>
         </div>
         <!-- /.container -->
+	
+	<footer id="fh5co-footer" role="contentinfo" style="background-image: url(images/img_bg_4.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-3 fh5co-widget">
+					<h3>About Education</h3>
+					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Learning</h3>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Course</a></li>
+						<li><a href="#">Blog</a></li>
+						<li><a href="#">Contact</a></li>
+						<li><a href="#">Terms</a></li>
+						<li><a href="#">Meetups</a></li>
+					</ul>
+				</div>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Learn &amp; Grow</h3>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Blog</a></li>
+						<li><a href="#">Privacy</a></li>
+						<li><a href="#">Testimonials</a></li>
+						<li><a href="#">Handbook</a></li>
+						<li><a href="#">Held Desk</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Engage us</h3>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Marketing</a></li>
+						<li><a href="#">Visual Assistant</a></li>
+						<li><a href="#">System Analysis</a></li>
+						<li><a href="#">Advertise</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<h3>Legal</h3>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Find Designers</a></li>
+						<li><a href="#">Find Developers</a></li>
+						<li><a href="#">Teams</a></li>
+						<li><a href="#">Advertise</a></li>
+						<li><a href="#">API</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">Copyright &copy; 2017.Company name All rights reserved.</small> 
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+	<!-- jQuery Easing -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" integrity="sha512-xq+0+dRhI6SZOh+lDnMJEju2p2YPINflJLcYrRAsIMaXnJi6/V3lppCMCYsB2MLeF2E93r+fVo0MioY90pNzpw==" crossorigin="anonymous"></script>
+	<!-- Bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
+	<!-- Modernizr JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous"></script>
+	<!-- Waypoints -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js" integrity="sha512-ZKNVEa7gi0Dz4Rq9jXcySgcPiK+5f01CqW+ZoKLLKr9VMXuCsw3RjWiv8ZpIOa0hxO79np7Ec8DDWALM0bDOaQ==" crossorigin="anonymous"></script>
+	<!-- Stellar Parallax -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js" integrity="sha512-PNXCBnFH9wShbV+mYnrfo0Gf3iSREgBWmYAoMIfc+Z83vVq3Nu4yxBk6j+BZ40ZIhtW3WlTQdBvW3AYLAnlgpA==" crossorigin="anonymous"></script>
+	<!-- Carousel -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" integrity="sha512-9CWGXFSJ+/X0LWzSRCZFsOPhSfm6jbnL+Mpqo0o8Ke2SYr8rCTqb4/wGm+9n13HtDE1NQpAEOrMecDZw4FXQGg==" crossorigin="anonymous"></script>
+	<!-- Flexslider -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider-min.js" integrity="sha512-BmoWLYENsSaAfQfHszJM7cLiy9Ml4I0n1YtBQKfx8PaYpZ3SoTXfj3YiDNn0GAdveOCNbK8WqQQYaSb0CMjTHQ==" crossorigin="anonymous"></script>
+	<!-- countTo -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.2.0/jquery.countTo.js" integrity="sha512-W+fE2PngAaUn114foOtj7bJNDqrqANLKjGb6gyz159hoF1+NnEWRfgQtEpn3kCLjQlUQ/FAhTsmmqQNOx/RBOw==" crossorigin="anonymous"></script>
+	<!-- Magnific Popup -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous"></script>
+	<!-- <script src="/js/magnific-popup-options.js"></script> -->
+	<script th:src="@{/static/js/magnific-popup-options.js}"></script>
+	<!-- Count Down -->
+	<!-- <script src="/js/simplyCountdown.js"></script> -->
+	<script th:src="@{/static/js/simplyCountdown.js}"></script>
+	<!-- Main -->
+	<!-- <script src="/js/main.js"></script> -->
+	<script th:src="@{/static/js/main.js}"></script>
+	<script>
+    var d = new Date(new Date().getTime() + 1000 * 120 * 120 * 2000);
+
+    // default example
+    simplyCountdown('.simply-countdown-one', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate()
+    });
+
+    //jQuery example
+    $('#simply-countdown-losange').simplyCountdown({
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate(),
+        enableUtc: false
+    });
+	</script>
+	</body>
 </html>
+

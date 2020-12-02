@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -8,7 +8,7 @@
         <title>Login</title>
     </head>
     <body class="text-center">
-        <div layout:fragment="content">
+        <div layout:fragment="content" class="log">
             <form class="form-signin" th:action="@{/login}" method="post">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <div th:if="${param.error}">
